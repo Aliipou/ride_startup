@@ -763,7 +763,7 @@ Final:            €11.25
 
 ## License
 
-MIT © Ride & Chill 2024
+MIT © Ride & Chill 2026
 
 ---
 
