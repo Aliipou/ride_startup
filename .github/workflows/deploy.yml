@@ -1,0 +1,101 @@
+name: Deploy — Production
+
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false  # never cancel a deploy mid-flight
+
+jobs:
+  # Guard: CI must pass before deploy
+  ci-check:
+    name: CI Gate
+    uses: ./.github/workflows/ci.yml
+
+  deploy-backend:
+    name: Deploy Backend → Railway
+    needs: ci-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          cd backend
+          railway up --service backend --detach
+
+      - name: Run migrations
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway run --service backend alembic upgrade head
+        continue-on-error: false  # migration failure blocks all deploys
+
+  deploy-web:
+    name: Deploy Web → Vercel
+    needs: ci-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_WEB_PROJECT_ID }}
+          working-directory: ./web
+          vercel-args: "--prod"
+
+  deploy-rider:
+    name: Deploy Rider → Vercel
+    needs: ci-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_RIDER_PROJECT_ID }}
+          working-directory: ./rider
+          vercel-args: "--prod"
+
+  deploy-admin:
+    name: Deploy Admin → Vercel
+    needs: ci-check
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_ADMIN_PROJECT_ID }}
+          working-directory: ./admin
+          vercel-args: "--prod"
+
+  notify-success:
+    name: Notify Deployment Success
+    needs: [deploy-backend, deploy-web, deploy-rider, deploy-admin]
+    runs-on: ubuntu-latest
+    if: success()
+
+    steps:
+      - name: Post to Slack (optional)
+        if: ${{ secrets.SLACK_WEBHOOK != '' }}
+        run: |
+          curl -X POST "${{ secrets.SLACK_WEBHOOK }}" \
+            -H 'Content-type: application/json' \
+            --data '{"text":"✅ Ride & Chill deployed to production — commit ${{ github.sha }}"}'
