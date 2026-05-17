@@ -16,7 +16,7 @@ from ..schemas.ride import (
     TipRequest,
 )
 from ..services import pricing_service, ride_service
-from ..utils.deps import get_current_user, get_current_rider, require_approved_rider
+from ..utils.deps import get_current_user, require_approved_rider
 from ..utils.geo import haversine
 
 router = APIRouter()
