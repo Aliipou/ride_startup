@@ -12,7 +12,6 @@ from app.config import settings
 from app.models.user import User
 from app.schemas.auth import (
     LoginEmailRequest,
-    LoginGoogleRequest,
     SignupEmailRequest,
     SignupPhoneRequest,
     TokenResponse,
