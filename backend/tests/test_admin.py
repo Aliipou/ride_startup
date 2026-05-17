@@ -3,7 +3,6 @@
 Verifies admin-only authorization guard.
 """
 
-import pytest
 from tests.conftest import make_user, make_rider, auth_headers
 
 
