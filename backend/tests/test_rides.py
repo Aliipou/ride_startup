@@ -1,6 +1,5 @@
 """Integration tests for rides endpoints."""
 
-import pytest
 from tests.conftest import make_user, make_rider, auth_headers
 
 
