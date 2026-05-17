@@ -12,7 +12,7 @@ from ..database import get_db
 from ..models.ride import Ride, RideStatus
 from ..models.user import User
 from ..models.rider import Rider, ApprovalStatus, RiderStatus
-from ..schemas.admin import AdminStats, PricingConfig, AdminChartPoint
+from ..schemas.admin import AdminStats, PricingConfig
 from ..utils.deps import get_current_admin
 
 router = APIRouter()
