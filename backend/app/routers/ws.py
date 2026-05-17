@@ -1,7 +1,7 @@
 """WebSocket router — real-time communication for users and riders."""
 
 import json
-from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query, status
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, Query
 from ..utils.security import verify_token
 
 router = APIRouter()
