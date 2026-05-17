@@ -3,7 +3,6 @@
 Tests exercise the full HTTP stack: router → service → DB.
 """
 
-import pytest
 from tests.conftest import make_user, auth_headers
 
 
