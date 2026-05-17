@@ -1,6 +1,6 @@
 """Auth router — signup, login, OTP, OAuth, token refresh, logout."""
 
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, status
 from sqlalchemy.orm import Session
 
 from ..database import get_db
