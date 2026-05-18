@@ -2,7 +2,6 @@
 
 import json
 import uuid
-from datetime import timedelta
 
 import redis as redis_lib
 from fastapi import HTTPException, status
