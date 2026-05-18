@@ -56,7 +56,7 @@ def update_status(
     """Toggle rider online/offline status."""
     from ..models.rider import RiderStatus
     if data.status not in (RiderStatus.ONLINE, RiderStatus.OFFLINE):
-        from fastapi import HTTPException, status
+        from fastapi import HTTPException
         raise HTTPException(status_code=400, detail="Can only manually set ONLINE or OFFLINE")
 
     current_rider.status = data.status
