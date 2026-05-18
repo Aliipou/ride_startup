@@ -1,6 +1,6 @@
 """Integration tests for rides endpoints."""
 
-from tests.conftest import make_user, make_rider, auth_headers
+from tests.conftest import make_user, auth_headers
 
 
 class TestRideEstimate:
