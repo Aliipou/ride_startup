@@ -1,9 +1,7 @@
 """WebSocket tests — connection, auth, message delivery."""
 
-import json
 import uuid
 import pytest
-from fastapi.testclient import TestClient
 from app.utils.security import create_access_token
 from tests.conftest import make_user
 
