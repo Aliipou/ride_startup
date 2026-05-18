@@ -29,7 +29,7 @@ def get_transactions(
     db: Session = Depends(get_db),
 ):
     from sqlalchemy import select, desc
-    from ..models.wallet import Wallet, WalletTransaction
+    from ..models.wallet import WalletTransaction
 
     wallet = wallet_service.get_or_create_wallet(db, current_user.id)
     txns = db.execute(
