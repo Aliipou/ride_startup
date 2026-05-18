@@ -1,8 +1,8 @@
 """Unit tests for security utilities — Argon2 hashing + JWT."""
 
-import pytest
-import time
 from datetime import timedelta
+
+import pytest
 
 from app.utils.security import (
     get_password_hash,
