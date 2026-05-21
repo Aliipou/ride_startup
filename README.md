@@ -5,7 +5,7 @@
 
 ## Demo
 
-[Live Demo](https://ride-startup-4nbwjs53d-aliipous-projects.vercel.app)
+[Live Demo](https://ride-startup.vercel.app)
 
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109-009688?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat&logo=next.js)](https://nextjs.org)
