@@ -2,6 +2,11 @@
 
 > Bike taxi platform for Kokkola, Finland — book a ride in seconds, track in real-time, pay instantly.
 
+
+## Demo
+
+[Live Demo](https://ride-startup-4nbwjs53d-aliipous-projects.vercel.app)
+
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109-009688?style=flat&logo=fastapi)](https://fastapi.tiangolo.com)
 [![Next.js](https://img.shields.io/badge/Next.js-14-black?style=flat&logo=next.js)](https://nextjs.org)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?style=flat&logo=postgresql)](https://postgresql.org)
