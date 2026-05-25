@@ -1,5 +1,10 @@
 # 🚲 Ride & Chill
 
+
+## Live Demo
+**Frontend:** [https://ride-startup.vercel.app](https://ride-startup.vercel.app)
+**API:** [https://ride-startup-backend.onrender.com/health](https://ride-startup-backend.onrender.com/health)
+
 > Bike taxi platform for Kokkola, Finland — book a ride in seconds, track in real-time, pay instantly.
 
 
